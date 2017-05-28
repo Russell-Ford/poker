@@ -1,0 +1,20 @@
+.DS_Store
+
+#ide files
+.vscode
+.vs/
+*.pubxml
+
+#user-specific files
+*.suo
+*.user
+
+#build artifacts
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+build/
+bld/
+[Bb]in/
+[Oo]bj/
