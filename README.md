@@ -7,11 +7,17 @@ This is a C# [.NET Core](https://github.com/dotnet/core) solution judge 3 Card p
 2. [Python 2.7](https://www.python.org/downloads/) - required to run tests
 
 # Build/Compile
-1. `dotnet build`
+
+## CLI Publish
+1. Set current directory to `.\src` from project root
+2. Run `dotnet publish -o ..\publish`
 
 # Run
-1. `dotnet PokerSolver` (in appropriate dir)
+1. Set current directory to published code location
+   * if following above from project root that is `.\publish`
+2. Run `dotnet PokerSolver.dll`  
 
 # Test
-1. `python "dotnet PokerSolver"` (in appropriate dir)
+1. `python .\run_tests "dotnet .\publish\PokerSolver.dll"`
+	* **Note**: the path the the published dll is relative to the project root. The above only works if publish directions above are followed.
 
