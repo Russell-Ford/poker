@@ -17,4 +17,8 @@
     <OutputPath>bin\Release\</OutputPath>
   </PropertyGroup>
 
+  <Target Name="AutoTest" AfterTargets="Build">    
+    <Exec Command="python .\run_tests &quot;dotnet .\src\$(OutputPath)PokerSolver.dll&quot;" WorkingDirectory="..\" />
+  </Target>
+
 </Project>
