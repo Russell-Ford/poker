@@ -1,7 +1,7 @@
 ﻿namespace PokerSolver
 {
     using System;
-    using System.Collections.Generic;
+    using System.Collections.Generic;    
 
     public class Program
     {
@@ -39,7 +39,10 @@
                     poker.AddPlayerHand(playerId, playerCardInput);
                 }
 
-                Console.WriteLine(poker.DetermineWinners());
+                var winners = poker.DetermineWinners();                
+                var output = string.Join(" ", winners); //optimization - let JITer decide if we need a string builder
+
+                Console.WriteLine(output);
             }
             catch (Exception ex)
             {
