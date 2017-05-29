@@ -8,7 +8,7 @@
     public class FlushRule : IRule
     {
         /// <summary>
-        ///     The rule whose logic we use for tie-breaking as 3-of-a-kind does not need to supply its own
+        ///     The rule whose logic we use for tie-breaking as flush does not need to supply its own
         /// </summary>
         private IRule TieBreakingRule { get; }
 
