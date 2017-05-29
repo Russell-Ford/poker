@@ -20,6 +20,8 @@ Another potential refactor would be to create `PlayerHands.cs` to carry `PlayerI
 # Requirements
 1. [.NET Core SDK](https://www.microsoft.com/net/download/core)
 2. [Python 2.7](https://www.python.org/downloads/) - required to run tests
+3. [VS 2017 IDE](https://www.visualstudio.com/downloads/) - required to open .sln and run+debug
+   * If you don't want to download VS2017 the code files themselves can be easily viewed in any text editor. I would recommend [VS Code](https://code.visualstudio.com/?wt.mc_id=vscom_downloads) with C# plugin for text highlighting and integration with dotnet core.
 
 # Build/Compile
 
