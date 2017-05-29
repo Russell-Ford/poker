@@ -1,20 +1,21 @@
 ﻿namespace PokerSolver.Rules
 {
-    using PokerSolver.Models;
-    using PokerSolver.RuleProcessors.Interfaces;
+    using System;
+    using System.Collections.Generic;
+
+    using PokerSolver.Models;    
 
     public class ThreeOfAKindRule : IRule
     {
-        private ISameKindProcessor SameKindProcessor { get; }
-
-        public ThreeOfAKindRule(ISameKindProcessor sameKindProcessor)
-        {
-            this.SameKindProcessor = sameKindProcessor;
-        }
-
         public bool EvaluateRule(Hand hand)
         {
-            return this.SameKindProcessor.EvaluateSameKind(hand, 3);
+            return hand.EvaluateSameKind(3);
+        }
+
+        public IList<Hand> BreakTie(IList<Hand> hands)
+        {
+            // TODO
+            throw new NotImplementedException();
         }
     }
 }

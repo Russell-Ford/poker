@@ -21,4 +21,8 @@
     <Exec Command="python .\run_tests &quot;dotnet .\src\$(OutputPath)PokerSolver.dll&quot;" WorkingDirectory="..\" />
   </Target>
 
+  <ItemGroup>
+    <PackageReference Include="System.ValueTuple" Version="4.4.0-preview1-25305-02" />
+  </ItemGroup>
+
 </Project>

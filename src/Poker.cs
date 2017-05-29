@@ -1,13 +1,14 @@
 ﻿namespace PokerSolver
 {
     using System.Collections.Generic;
+    using System.Linq;
 
     using PokerSolver.Models;
     using PokerSolver.RuleSets;
 
     public class Poker
     {
-        private Dictionary<int, Hand> PlayerHands { get; } = new Dictionary<int, Hand>();
+        private IList<Hand> PlayerHands { get; } = new List<Hand>();
 
         private IRuleSet RuleSet { get; }
 
@@ -18,31 +19,37 @@
 
         public void AddPlayerHand(int playerId, IList<string> playerHand)
         {
-            this.PlayerHands.Add(playerId, new Hand(playerHand));
+            this.PlayerHands.Add(new Hand(playerId, playerHand));
         }
 
         public IList<int> DetermineWinners()
         {
-            var winningScore = 0;
-            var winners = new List<int> { };
+            var winningRank = int.MaxValue;
+            var winners = new List<Hand> { };
 
             foreach (var playerHand in PlayerHands)
             {
-                var hand = playerHand.Value;
-                var score = this.RuleSet.ScoreHand(hand);
+                var rank = this.RuleSet.GolfScore(playerHand);
 
-                if (score > winningScore)
+                if (rank < winningRank)
                 {
-                    winningScore = score;
-                    winners = new List<int> { playerHand.Key };
+                    winningRank = rank;
+                    winners = new List<Hand> { playerHand };
                 }
-                else if (score == winningScore)
+                else if (rank == winningRank)
                 {
-                    winners.Add(playerHand.Key);
+                    winners.Add(playerHand);
                 }
             }
 
-            return winners;
+            if (winners.Count > 1)
+            {
+                winners = 
+                    this.RuleSet.BreakTie(winningRank, winners)
+                        .ToList();
+            }
+
+            return winners.Select(h => h.Id).ToList();
         }
     }
 }
