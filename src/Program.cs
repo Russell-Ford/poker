@@ -1,7 +1,9 @@
 ﻿namespace PokerSolver
 {
     using System;
-    using System.Collections.Generic;    
+    using System.Collections.Generic;
+    using System.Linq;
+    using PokerSolver.RuleSets;
 
     public class Program
     {
@@ -9,7 +11,11 @@
         {
             try
             {
-                var poker = new Poker();
+                // dependencies
+                var threeCardRuleSet = new ThreeCardPoker();
+
+                // injection
+                var poker = new Poker(threeCardRuleSet);
 
                 var input = Console.ReadLine();
                 if (!int.TryParse(input, out var numberOfPlayers))
@@ -39,14 +45,14 @@
                     poker.AddPlayerHand(playerId, playerCardInput);
                 }
 
-                var winners = poker.DetermineWinners();                
+                var winners = poker.DetermineWinners().OrderBy(i => i); // required to sort ties in ascending order
                 var output = string.Join(" ", winners); //optimization - let JITer decide if we need a string builder
 
                 Console.WriteLine(output);
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
             }            
         }
     }

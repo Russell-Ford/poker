@@ -1,13 +1,20 @@
 ﻿namespace PokerSolver
 {
-    using System;
     using System.Collections.Generic;
 
     using PokerSolver.Models;
+    using PokerSolver.RuleSets;
 
     public class Poker
     {
         private Dictionary<int, Hand> PlayerHands { get; } = new Dictionary<int, Hand>();
+
+        private IRuleSet RuleSet { get; }
+
+        public Poker(IRuleSet ruleSet)
+        {
+            this.RuleSet = ruleSet;
+        }
 
         public void AddPlayerHand(int playerId, IList<string> playerHand)
         {
@@ -16,9 +23,26 @@
 
         public IList<int> DetermineWinners()
         {
-            // need to implement the rules probably with a irule pattern for genericness
+            var winningScore = 0;
+            var winners = new List<int> { };
 
-            throw new NotImplementedException();
+            foreach (var playerHand in PlayerHands)
+            {
+                var hand = playerHand.Value;
+                var score = this.RuleSet.ScoreHand(hand);
+
+                if (score > winningScore)
+                {
+                    winningScore = score;
+                    winners = new List<int> { playerHand.Key };
+                }
+                else if (score == winningScore)
+                {
+                    winners.Add(playerHand.Key);
+                }
+            }
+
+            return winners;
         }
     }
 }
