@@ -15,6 +15,7 @@
             Rules = new List<IRule>
             {
                 new ThreeOfAKindRule(highCardRule),
+                new StraightRule(highCardRule),
                 new FlushRule(highCardRule),
                 new PairRule(),
                 highCardRule
