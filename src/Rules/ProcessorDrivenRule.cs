@@ -4,16 +4,20 @@
     using System.Linq;
 
     using PokerSolver.Models;
+    using PokerSolver.RuleProcessors;
 
-    public class FlushRule : IRule
+    public class ProcessorDrivenRule : IRule
     {
         /// <summary>
         ///     The rule whose logic we use for tie-breaking as flush does not need to supply its own
         /// </summary>
         private IRule TieBreakingRule { get; }
 
-        public FlushRule(IRule tieBreakingRule)
+        private IList<IRuleProcessor> Processors { get; }
+
+        public ProcessorDrivenRule(IList<IRuleProcessor> processors, IRule tieBreakingRule)
         {
+            this.Processors = processors;
             this.TieBreakingRule = tieBreakingRule;
         }
 
@@ -24,8 +28,15 @@
 
         public bool EvaluateRule(Hand hand)
         {
-            var suitToCheck = hand.Cards.Select(c => c.Suit).First();
-            return hand.Cards.All(c => c.Suit == suitToCheck);
+            foreach (var processor in this.Processors)
+            {
+                if (!processor.ProcessHand(hand)) //optimization bail on first false
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 }

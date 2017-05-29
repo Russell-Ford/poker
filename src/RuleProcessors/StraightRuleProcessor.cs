@@ -1,29 +1,26 @@
-﻿namespace PokerSolver.Rules
+﻿namespace PokerSolver.RuleProcessors
 {
     using System.Collections.Generic;
     using System.Linq;
 
     using PokerSolver.Models;
 
-
-    public class StraightRule : IRule
+    public class StraightRuleProcessor : IRuleProcessor
     {
-        /// <summary>
-        ///     The rule whose logic we use for tie-breaking as straight rule does not need to supply its own
-        /// </summary>
-        private IRule TieBreakingRule { get; }
+        private Dictionary<Hand, bool> ProcessedHandCache { get; } = new Dictionary<Hand, bool>();
 
-        public StraightRule(IRule tieBreakingRule)
+        public bool ProcessHand(Hand hand)
         {
-            this.TieBreakingRule = tieBreakingRule;
+            if (!ProcessedHandCache.ContainsKey(hand))
+            {
+                var result = this.EvaluateStraight(hand);
+                ProcessedHandCache.Add(hand, result);
+            }
+
+            return ProcessedHandCache[hand];
         }
 
-        public IList<Hand> BreakTie(IList<Hand> hands)
-        {
-            return this.TieBreakingRule.BreakTie(hands);
-        }
-
-        public bool EvaluateRule(Hand hand)
+        private bool EvaluateStraight(Hand hand)
         {
             var orderedRanks = hand.Cards.Select(c => c.Rank).OrderBy(r => r).ToArray();
 
