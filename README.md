@@ -29,14 +29,19 @@ Another potential refactor would be to create `PlayerHands.cs` to carry `PlayerI
 1. Set current directory to `.\src` from project root
 2. Run `dotnet publish -o ..\publish -c release`
 
+Note, if you wish to produce an exe instead you can run `dotnet publish -o ..\publish -c release -r win10-x64`
+
 # Run
 1. Set current directory to published code location
    * if following above from project root that is `.\publish`
-2. Run `dotnet PokerSolver.dll`  
+2. Run `dotnet PokerSolver.dll`
+3. *OR* run `PokerSolver.exe` if you published the exe
 
 # Test
-1. `python .\run_tests "dotnet .\publish\PokerSolver.dll"`
-	* **Note**: the path the the published dll is relative to the project root. The above only works if publish directions above are followed.
+1. Set current directory to project root
+2. `python .\run_tests "dotnet .\publish\PokerSolver.dll"`
+	* **Note**: the path the the published dll is relative to the project root. The above only works if publish directions above are followed. 
+3. `python .\run_tests ".\publish\PokerSolver.exe"` if you published the exe
 
 Note, Tests in the test folder _should_ automatically be run on build.
 
