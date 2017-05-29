@@ -8,12 +8,15 @@
     {
         public ThreeCardPoker()
         {
+            // dependencies
+            var highCardRule = new HighCardRule();
+
             // configured rules with DI
             Rules = new List<IRule>
             {
-                new ThreeOfAKindRule(),
+                new ThreeOfAKindRule(highCardRule),
                 new PairRule(),
-                new HighCardRule()
+                highCardRule
             };
         }        
     }
