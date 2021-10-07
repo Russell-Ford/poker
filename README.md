@@ -1,7 +1,7 @@
 # "Poker" Solver
 
 ## Fork Note
-This project was forked from https://github.com/danielloganking/poker to save some time. Updated the project to Net5.0, added some dialog prompts, and removed the tie breaking mechanic.
+This project was forked from https://github.com/danielloganking/poker to save some time. Updated the project to Net5.0 and added some dialog prompts.
 
 ## Note
 
