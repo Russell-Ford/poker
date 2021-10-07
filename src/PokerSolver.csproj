@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <RuntimeIdentifiers>win10-x64</RuntimeIdentifiers>
     <AssemblyVersion>0.1.0.0</AssemblyVersion>
     <FileVersion>0.1.0.0</FileVersion>
@@ -18,9 +18,9 @@
     <OutputPath>bin\Release\</OutputPath>
   </PropertyGroup>
 
-  <Target Name="AutoTest" AfterTargets="Build">    
+  <!-- <Target Name="AutoTest" AfterTargets="Build">
     <Exec Command="python .\run_tests &quot;dotnet .\src\$(OutputPath)PokerSolver.dll&quot;" WorkingDirectory="..\" />
-  </Target>
+  </Target> -->
 
   <ItemGroup>
     <PackageReference Include="System.ValueTuple" Version="4.4.0-preview1-25305-02" />

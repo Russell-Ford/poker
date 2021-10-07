@@ -42,12 +42,13 @@
                 }
             }
 
-            if (winners.Count > 1)
-            {
-                winners = 
-                    this.RuleSet.BreakTie(winningRank, winners)
-                        .ToList();
-            }
+            // not needed for now
+            // if (winners.Count > 1)
+            // {
+            //     winners =
+            //         this.RuleSet.BreakTie(winningRank, winners)
+            //             .ToList();
+            // }
 
             return winners.Select(h => h.Id).ToList();
         }
