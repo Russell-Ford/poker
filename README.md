@@ -1,5 +1,8 @@
 # "Poker" Solver
 
+## Fork Note
+This project was forked from https://github.com/danielloganking/poker to save some time. Updated the project to Net5.0, added some dialog prompts, and removed the tie breaking mechanic.
+
 ## Note
 
 This was original done as a "homework" assignment for an interview screen. A best effort has been made to scrub the identity of the company from the code base but I make no promises it has been wholly excised.  No other alterations have been made to the source or history despite my vain desires. As it has been two years, and the code quality here isn't exactly something you should be copying, I feel this is safe to publish. However, DO YOUR OWN HOMEWORK.
