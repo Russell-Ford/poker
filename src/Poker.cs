@@ -8,7 +8,7 @@
 
     public class Poker
     {
-        private IList<Hand> PlayerHands { get; } = new List<Hand>();
+        private IList<Hand> PlayerHands { get; set; } = new List<Hand>();
 
         private IRuleSet RuleSet { get; }
 
@@ -20,6 +20,10 @@
         public void AddPlayerHand(int playerId, IList<string> playerHand)
         {
             this.PlayerHands.Add(new Hand(playerId, playerHand));
+        }
+
+        public void AddPlayerHands(IList<Hand> hands) {
+            this.PlayerHands = hands;
         }
 
         public IList<int> DetermineWinners()
